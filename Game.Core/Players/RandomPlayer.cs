@@ -8,6 +8,8 @@ namespace GuessGame.Core.Players
 
 		public override int Guess()
 		{
+            this.Sleep();
+
             int result = RandomService.Guess();
             Answers.Add(result);
 			return result;

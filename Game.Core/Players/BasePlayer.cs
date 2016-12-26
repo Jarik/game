@@ -2,51 +2,57 @@
 using Game.Core.Services.Implementation;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace GuessGame.Core.Players
 {
-	public abstract class BasePlayer
-	{
+    public abstract class BasePlayer
+    {
         protected IRandomService RandomService = new RandomService();
 
         public List<int> Answers;
 
-		public BasePlayer(string name)
-		{
-			Name = name;
-			Answers = new List<int>();
-		}
+        public BasePlayer(string name)
+        {
+            Name = name;
+            Answers = new List<int>();
+        }
 
-		public string Name { get; set; }
+        public string Name { get; set; }
 
-		public DateTime? LastGuess { get; set; }
-		public int WaitTime { get; set; }
+        public DateTime? LastGuess { get; set; }
+        public int WaitingTime { get; set; }
 
-		public void AddWaitTime(int timeToWait)
-		{
-			LastGuess = DateTime.Now;
-			WaitTime = timeToWait;
-		}
+        public void AddWaitTime(int timeToWait)
+        {
+            LastGuess = DateTime.Now;
+            WaitingTime = timeToWait;
+        }
 
-		public bool IsWaiting
-		{
-			get
-			{
-				if (LastGuess.HasValue)
-				{
-					var isReady = DateTime.Now < LastGuess.Value.AddMilliseconds(WaitTime);
-					if (isReady)
-					{
-						LastGuess = null;
-						WaitTime = 0;
-					}
-					return isReady;
-				}
+        protected void Sleep()
+        {
+            Thread.Sleep(WaitingTime);
+        }
 
-				return false;
-			}
-		}
+        public bool IsWaiting
+        {
+            get
+            {
+                if (LastGuess.HasValue)
+                {
+                    var isReady = DateTime.Now < LastGuess.Value.AddMilliseconds(WaitingTime);
+                    if (isReady)
+                    {
+                        LastGuess = null;
+                        WaitingTime = 0;
+                    }
+                    return isReady;
+                }
 
-		public abstract int Guess();
-	}
+                return false;
+            }
+        }
+
+        public abstract int Guess();
+    }
 }

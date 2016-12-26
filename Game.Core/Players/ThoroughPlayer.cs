@@ -20,7 +20,9 @@ namespace GuessGame.Core.Players
 
 		public override int Guess()
 		{
-			if (LastGuessed == 0)
+            this.Sleep();
+
+            if (LastGuessed == 0)
 			{
 				LastGuessed = Start;
 			}

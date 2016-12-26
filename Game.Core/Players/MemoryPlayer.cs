@@ -13,7 +13,9 @@ namespace GuessGame.Core.Players
 
 		public override int Guess()
 		{
-			int result;
+            this.Sleep();
+
+            int result;
 			do
 			{
 				result = RandomService.Guess();

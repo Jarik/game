@@ -51,6 +51,11 @@ namespace GuessGame.Core.Game
 		{
 			_isTimeEnded = (DateTime.Now > GameStarted.AddMilliseconds(TimeForGame));
 
+            if (_isTimeEnded)
+            {
+                Console.WriteLine("Time is up");
+            }
+
 			return (_isGuessed || _isGameEnded || _isTimeEnded);
 		}
 
@@ -79,7 +84,7 @@ namespace GuessGame.Core.Game
 				var timeToWait = WaitTime(number);
 				player.AddWaitTime(timeToWait);
 
-                ConsoleService.Log(this.GameId, $"player {player.Name}  wait : {player.WaitTime}");
+                ConsoleService.Log(this.GameId, $"player {player.Name}  waits : {player.WaitingTime}");
 			}
 
 			return _isGuessed;
