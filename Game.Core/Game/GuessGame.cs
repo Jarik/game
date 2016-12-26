@@ -33,6 +33,8 @@ namespace GuessGame.Core.Game
 
 		public int BasketWeight { get; set; }
 
+        public Guid GameId { get; set; }
+
 		public List<BasePlayer> Players { get; set; }
 
 		public volatile int Attempts;
