@@ -90,6 +90,22 @@ namespace GuessGame.Core.Game
 			return Math.Abs(BasketWeight - number);
 		}
 
+        private void DoPlayerStuff(BasePlayer player)
+        {
+            if (Exit())
+            {
+                return;
+            }
+
+            if (!player.IsWaiting)
+            {
+                var num = player.Guess();
+
+                ConsoleService.Log(this.GameId, $"player {player.Name} tries: " + num);
+                IsGuessed(num, player);
+            }
+        }
+
 		public GameResult Start()
 		{
 			GameStarted = DateTime.Now;
@@ -98,22 +114,11 @@ namespace GuessGame.Core.Game
 			{
 				foreach (var player in Players)
 				{
-					if (!player.IsWaiting)
-					{
-						var num = player.Guess();
-
-						if (Exit())
-						{
-							break;
-						}
-
-                        ConsoleService.Log(this.GameId, $"player {player.Name} tries: " + num);
-						IsGuessed(num, player);
-					}
+                    DoPlayerStuff(player);
 				}
 			}
-			var result = GetResult();
-			return result;
+
+            return GetResult();
 		}
 
 		private GameResult GetResult()
