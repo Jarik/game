@@ -8,6 +8,6 @@ namespace Game.Core.Services
 {
     public interface IConsoleService
     {
-        void Log(string message);
+        void Log(Guid gameId, string message);
     }
 }

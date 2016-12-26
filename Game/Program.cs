@@ -1,4 +1,6 @@
-﻿using GuessGame.Core.Game;
+﻿using Game.Core.Services;
+using Game.Core.Services.Implementation;
+using GuessGame.Core.Game;
 using GuessGame.Core.Players;
 using System;
 using System.Collections.Generic;
@@ -8,6 +10,8 @@ namespace GuessWeightGame
 {
     class Program
     {
+        public IConsoleService ConsoleService = new ConsoleService();
+
         List<BasePlayer> TestDataset()
         {
             const int playersCount = 2;
@@ -45,21 +49,17 @@ namespace GuessWeightGame
 
             var game = new GuessGameClass(players);
 
-            game.GameId = Guid.NewGuid();
-
-            Console.WriteLine($"Game id:  {game.GameId.ToString()}");
-
             var result = game.Start();
 
-            Console.WriteLine("Game is over ");
-            Console.WriteLine("Attempts: " + game.Attempts);
-            Console.WriteLine("RealWeight: " + result.RealWeight);
-            Console.WriteLine("Winner: " + result.WinnerName);
+            main.ConsoleService.Log(game.GameId, "Game is over ");
+            main.ConsoleService.Log(game.GameId, "Attempts: " + game.Attempts);
+            main.ConsoleService.Log(game.GameId, "RealWeight: " + result.RealWeight);
+            main.ConsoleService.Log(game.GameId, "Winner: " + result.WinnerName);
 
             if (string.IsNullOrEmpty(result.WinnerName))
             {
-                Console.WriteLine("Closest Name: " + result.Closest.Name);
-                Console.WriteLine("Closest Guess: " + result.Closest.Guess);
+                main.ConsoleService.Log(game.GameId, "Closest Name: " + result.Closest.Name);
+                main.ConsoleService.Log(game.GameId, "Closest Guess: " + result.Closest.Guess);
             }
 
             Console.WriteLine("Restart game, y/n");

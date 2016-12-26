@@ -20,9 +20,13 @@ namespace GuessGame.Core.Game
 			_isGuessed = false;
 			_isGameEnded = false;
 
-			Players = players;
+            this.GameId = Guid.NewGuid();
+
+            ConsoleService.Log(this.GameId, $"Game id:  {this.GameId.ToString()}");
+
+            Players = players;
 			BasketWeight = RandomService.Guess();
-			ConsoleService.Log($"Basket weight : {BasketWeight}");
+			ConsoleService.Log(this.GameId, $"Basket weight : {BasketWeight}");
 			GuessedNumbers = new List<int>();
 			TimeForGame = Constants.GameTime;
 		}
@@ -75,7 +79,7 @@ namespace GuessGame.Core.Game
 				var timeToWait = WaitTime(number);
 				player.AddWaitTime(timeToWait);
 
-                ConsoleService.Log($"player {player.Name}  wait : {player.WaitTime}");
+                ConsoleService.Log(this.GameId, $"player {player.Name}  wait : {player.WaitTime}");
 			}
 
 			return _isGuessed;
@@ -103,7 +107,7 @@ namespace GuessGame.Core.Game
 							break;
 						}
 
-                        ConsoleService.Log($"player {player.Name} tries: " + num);
+                        ConsoleService.Log(this.GameId, $"player {player.Name} tries: " + num);
 						IsGuessed(num, player);
 					}
 				}
