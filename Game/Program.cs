@@ -43,28 +43,32 @@ namespace GuessWeightGame
 
         private void PlayGame(Program main)
         {
-            const string repeatGameFlag = "y";
+            const string yesFlag = "y";
+
+            Console.WriteLine("Sync game? y/n?");
+
+            bool sync = Console.ReadLine() == yesFlag;
 
             var players = main.TestDataset();
 
             var game = new GameClass(players);
 
-            var result = game.Start();
+            var result = game.Start(sync);
 
-            main.ConsoleService.Log(game.GameId, "Game is over ");
-            main.ConsoleService.Log(game.GameId, "Attempts: " + game.Attempts);
-            main.ConsoleService.Log(game.GameId, "RealWeight: " + result.RealWeight);
-            main.ConsoleService.Log(game.GameId, "Winner: " + result.WinnerName);
+            main.ConsoleService.Log(game.GameId, "Game is over ", sync);
+            main.ConsoleService.Log(game.GameId, "Attempts: " + game.Attempts, sync);
+            main.ConsoleService.Log(game.GameId, "RealWeight: " + result.RealWeight, sync);
+            main.ConsoleService.Log(game.GameId, "Winner: " + result.WinnerName, sync);
 
             if (string.IsNullOrEmpty(result.WinnerName))
             {
-                main.ConsoleService.Log(game.GameId, "Closest Name: " + result.Closest.Name);
-                main.ConsoleService.Log(game.GameId, "Closest Guess: " + result.Closest.Guess);
+                main.ConsoleService.Log(game.GameId, "Closest Name: " + result.Closest.Name, sync);
+                main.ConsoleService.Log(game.GameId, "Closest Guess: " + result.Closest.Guess, sync);
             }
 
             Console.WriteLine("Restart game, y/n");
 
-            if (Console.ReadLine() == repeatGameFlag)
+            if (Console.ReadLine() == yesFlag)
             {
                 main.BreakOutput();
 

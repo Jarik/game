@@ -9,21 +9,28 @@ namespace Game.Core.Services.Implementation
 {
     public class ConsoleService : IConsoleService
     {
-        public void Log(Guid gameId, string message)
+        public void Log(Guid gameId, string message, bool syncVersion = true)
         {
-            FileStream fs = new FileStream($@"Games\Game-{gameId.ToString()}.txt", FileMode.Append);
+            if (syncVersion)
+            {
+                FileStream fs = new FileStream($@"Games\Game-{gameId.ToString()}.txt", FileMode.Append);
 
-            TextWriter consoleOutput = Console.Out;
+                TextWriter consoleOutput = Console.Out;
 
-            StreamWriter fileOutput = new StreamWriter(fs);
+                StreamWriter fileOutput = new StreamWriter(fs);
 
-            Console.SetOut(fileOutput);
-            Console.WriteLine(message);
+                Console.SetOut(fileOutput);
+                Console.WriteLine(message);
 
-            Console.SetOut(consoleOutput);
-            Console.WriteLine(message);
+                Console.SetOut(consoleOutput);
+                Console.WriteLine(message);
 
-            fileOutput.Close();
+                fileOutput.Close();
+            }
+            else
+            {
+                Console.WriteLine(message);
+            }
         }
     }
 }
