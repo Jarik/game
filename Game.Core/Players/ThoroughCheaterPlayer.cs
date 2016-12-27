@@ -1,7 +1,7 @@
-﻿using GuessGame.Core.Game;
+﻿using Game.Core.Game;
 using System.Linq;
 
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
 	public class ThoroughCheaterPlayer : ThoroughPlayer
 	{
@@ -23,7 +23,7 @@ namespace GuessGame.Core.Players
 					LastGuessed++;
 				}
 			}
-			while (GuessGameClass.GuessedNumbers.Distinct().Contains(LastGuessed));
+			while (GameClass.GuessedNumbers.Distinct().Contains(LastGuessed));
 
 			Answers.Add(LastGuessed);
 			return LastGuessed;

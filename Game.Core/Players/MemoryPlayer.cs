@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
 	public class MemoryPlayer : BasePlayer
 	{

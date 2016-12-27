@@ -1,4 +1,4 @@
-﻿using GuessGame.Core;
+﻿using Game.Core;
 using System;
 
 namespace Game.Core.Services.Implementation

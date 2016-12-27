@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GuessGame.Core.Game
+namespace Game.Core.Game
 {
 	public class GameResult
 	{

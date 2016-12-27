@@ -1,5 +1,5 @@
 ﻿
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
 	public class RandomPlayer : BasePlayer
 	{

@@ -1,13 +1,13 @@
 ﻿using Game.Core.Services;
 using Game.Core.Services.Implementation;
-using GuessGame.Core.Players;
+using Game.Core.Players;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace GuessGame.Core.Game
+namespace Game.Core.Game
 {
-	public class GuessGameClass
+	public class GameClass
 	{
         IConsoleService ConsoleService = new ConsoleService();
         IRandomService RandomService = new RandomService();
@@ -15,7 +15,7 @@ namespace GuessGame.Core.Game
         private static bool _isGuessed;
         private static bool _isGameEnded;
 
-        public GuessGameClass(List<BasePlayer> players)
+        public GameClass(List<BasePlayer> players)
 		{
 			_isGuessed = false;
 			_isGameEnded = false;

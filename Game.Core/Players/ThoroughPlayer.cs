@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
 	public class ThoroughPlayer : BasePlayer
 	{

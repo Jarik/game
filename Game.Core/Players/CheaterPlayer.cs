@@ -1,6 +1,6 @@
-﻿using GuessGame.Core.Game;
+﻿using Game.Core.Game;
 
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
 	public class CheaterPlayer : BasePlayer
 	{
@@ -16,7 +16,7 @@ namespace GuessGame.Core.Players
 			{
 				result = RandomService.Guess();
 			}
-			while (GuessGameClass.GuessedNumbers.Contains(result));
+			while (GameClass.GuessedNumbers.Contains(result));
 			Answers.Add(result);
 			return result;
 		}

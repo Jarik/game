@@ -1,7 +1,7 @@
 ﻿using Game.Core.Services;
 using Game.Core.Services.Implementation;
-using GuessGame.Core.Game;
-using GuessGame.Core.Players;
+using Game.Core.Game;
+using Game.Core.Players;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -47,7 +47,7 @@ namespace GuessWeightGame
 
             var players = main.TestDataset();
 
-            var game = new GuessGameClass(players);
+            var game = new GameClass(players);
 
             var result = game.Start();
 

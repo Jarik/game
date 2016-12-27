@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 
-namespace GuessGame.Core.Players
+namespace Game.Core.Players
 {
     public abstract class BasePlayer
     {
